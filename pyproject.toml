@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "gmail-api"
-version = "0.1.0"
+version = "0.2.0"
 description = ""
 authors = ["bradi <bradisbon@gmail.com>"]
 
@@ -9,6 +9,7 @@ python = "^3.7"
 google-api-python-client = "^1.12.3"
 httplib2shim = "^0.0.3"
 oauth2client = "^4.1.3"
+google-auth-oauthlib = "^0.4.4"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
