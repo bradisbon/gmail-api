@@ -6,8 +6,9 @@ from httplib2shim import Http
 from oauth2client import file
 from email.mime.text import MIMEText
 
-creds = Credentials.from_authorized_user_file(os.path.expanduser('~/.credentials/gmail_api_token.json'))
-service = build('gmail', 'v1', credentials=creds)
+# uncomment this one token is saved
+# creds = Credentials.from_authorized_user_file(os.path.expanduser('~/.credentials/gmail_api_token.json'))
+# service = build('gmail', 'v1', credentials=creds)
 user_id='me'
 
 
@@ -41,3 +42,11 @@ def send_message(message):
     message = (service.users().messages().send(userId=user_id, body=message).execute())
     print(f'Message Id: {message["id"]}')
     return message
+
+
+if __name__ == '__main__':
+    CREDS_PATH = os.path.expanduser('path/to/credentials')
+    token = get_token(CREDS_PATH)
+
+    with open(os.path.expanduser('~/.credentials/gmail_api_token.json'), 'w') as token_file:
+        token_file.write(token)
