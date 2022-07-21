@@ -1,4 +1,6 @@
 import base64, os
+
+from google.auth.transport.requests import Request
 from googleapiclient.discovery import build
 from google_auth_oauthlib.flow import InstalledAppFlow
 from google.oauth2.credentials import Credentials
@@ -6,9 +8,12 @@ from httplib2shim import Http
 from oauth2client import file
 from email.mime.text import MIMEText
 
-# uncomment this one token is saved
-# creds = Credentials.from_authorized_user_file(os.path.expanduser('~/.credentials/gmail_api_token.json'))
-# service = build('gmail', 'v1', credentials=creds)
+
+creds = Credentials.from_authorized_user_file(os.path.expanduser('~/.credentials/gmail_api_token.json'))
+if creds and creds.expired and creds.refresh_token:
+    creds.refresh(Request())
+
+service = build('gmail', 'v1', credentials=creds)
 user_id='me'
 
 
